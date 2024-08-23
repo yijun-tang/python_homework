@@ -1,6 +1,5 @@
 import os
 import unittest as ut
-from typing import List
 from src.load import load_and_clean_data
 from src.analysis import SalesAnalyzer
 
