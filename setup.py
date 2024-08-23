@@ -8,9 +8,9 @@ setup(
     author_email='yijuntang94@gmail.com',
     packages=find_packages(),
     install_requires=[
-        'pandas',
+        'pandas~=2.2.2',
         'numpy',
-        'Faker',
-        'matplotlib'
+        'Faker~=27.4.0',
+        'matplotlib~=3.9.2'
     ],
 )

@@ -1,0 +1,4 @@
+pandas~=2.2.2
+numpy
+Faker~=27.4.0
+matplotlib~=3.9.2
