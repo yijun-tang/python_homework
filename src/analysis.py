@@ -8,6 +8,22 @@ class SalesAnalyzer:
         Initialize with the cleaned DataFrame
         """
         self.cleaned_df = data
+    
+    def append_sale_data(self, row: Dict) -> None:
+        """
+        Append a newly received sale data to the cleaned dataframe.
+        """
+        if 'date' not in row.keys():
+            raise ValueError("The sale data must contain a 'date' column")
+        if 'product_id' not in row.keys():
+            raise ValueError("The sale data must contain a 'product_id' column")
+        if 'quantity' not in row.keys():
+            raise ValueError("The sale data must contain a 'quantity' column")
+        if 'price' not in row.keys():
+            raise ValueError("The sale data must contain a 'price' column")
+        if 'customer_id' not in row.keys():
+            raise ValueError("The sale data must contain a 'customer_id' column")
+        self.cleaned_df = pd.concat([self.cleaned_df, pd.DataFrame([row])], ignore_index=True)
 
     @performance_monitor
     def top_products(self, n: int) -> List[Tuple[str, float]]:
