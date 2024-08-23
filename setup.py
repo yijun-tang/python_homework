@@ -10,6 +10,7 @@ setup(
     install_requires=[
         'pandas',
         'numpy',
-        'Faker'
+        'Faker',
+        'matplotlib'
     ],
 )

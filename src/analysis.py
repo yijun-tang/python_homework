@@ -49,6 +49,9 @@ class SalesAnalyzer:
         Return top customers by total spending
         """
         grouped = self.cleaned_df.groupby('customer_id')
-        top_n = grouped['total_sale'].sum().nlargest(top)
+        if top == -1:
+            top_n = grouped['total_sale'].sum()
+        else:
+            top_n = grouped['total_sale'].sum().nlargest(top)
         return list(zip(top_n.index, top_n.values))
 
