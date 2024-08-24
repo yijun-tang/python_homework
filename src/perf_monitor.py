@@ -8,6 +8,10 @@ logger = logging.getLogger(__name__)
 
 
 def performance_monitor(func):
+    """
+    Performance monitor decorator
+    """
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         # Log function name and arguments
@@ -29,7 +33,6 @@ def performance_monitor(func):
         logger.info(
             f"Function '{func.__name__}' executed in {execution_time:.4f} seconds"
         )
-
         return result
 
     return wrapper
