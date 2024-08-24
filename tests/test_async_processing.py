@@ -20,8 +20,6 @@ class TestAsyncProcessing(ut.IsolatedAsyncioTestCase):
             simulate_sales_stream(channel, 5), process_sales_updates(channel, sa, 3)
         )
 
-        # print(sa.cleaned_df)
-
         self.assertEqual(len(sa.cleaned_df), 3)
 
 
