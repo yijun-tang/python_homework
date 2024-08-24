@@ -5,6 +5,7 @@ from src.analysis import SalesAnalyzer
 
 TEST_DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
 class TestSalesAnalyzer(ut.TestCase):
     def test_top_products_empty(self):
         file_path = os.path.join(TEST_DATA_DIR, "data", "empty.csv")
@@ -19,7 +20,7 @@ class TestSalesAnalyzer(ut.TestCase):
         file_path = os.path.join(TEST_DATA_DIR, "data", "top_products.csv")
         df = load_and_clean_data(file_path)
         sa = SalesAnalyzer(df)
-        expected_output = [('P014', 375.30), ('P002', 373.59), ('P008', 254.16)]
+        expected_output = [("P014", 375.30), ("P002", 373.59), ("P008", 254.16)]
 
         top_three = sa.top_products(3)
 
@@ -43,12 +44,12 @@ class TestSalesAnalyzer(ut.TestCase):
         df = load_and_clean_data(file_path)
         sa = SalesAnalyzer(df)
         expected_output = {
-            '2023-02-15': 225.48, 
-            '2023-04-19': 523.18, 
-            '2023-07-10': 141.63, 
-            '2023-10-25': 223.0,
-            '2023-11-01': 333.84,
-            '2023-12-12': 465.14,
+            "2023-02-15": 225.48,
+            "2023-04-19": 523.18,
+            "2023-07-10": 141.63,
+            "2023-10-25": 223.0,
+            "2023-11-01": 333.84,
+            "2023-12-12": 465.14,
         }
 
         ds = sa.daily_sales()
@@ -72,7 +73,7 @@ class TestSalesAnalyzer(ut.TestCase):
         file_path = os.path.join(TEST_DATA_DIR, "data", "top_products.csv")
         df = load_and_clean_data(file_path)
         sa = SalesAnalyzer(df)
-        expected_output = [('C906', 375.30), ('C267', 373.59), ('C425', 254.16)]
+        expected_output = [("C906", 375.30), ("C267", 373.59), ("C425", 254.16)]
 
         top_three = sa.customer_spending(3)
 
@@ -83,5 +84,5 @@ class TestSalesAnalyzer(ut.TestCase):
             self.assertAlmostEqual(total_revenue1, total_revenue2, delta=1e-9)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ut.main()

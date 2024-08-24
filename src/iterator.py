@@ -1,5 +1,5 @@
-
 from datetime import datetime, timedelta
+
 
 class DateRangeIterator:
     def __init__(self, start_date, end_date):
@@ -16,11 +16,11 @@ class DateRangeIterator:
         Returns the iterator object itself.
         """
         return self
-    
+
     def __next__(self):
         """
         Returns the next date in the range.
-        
+
         Raises StopIteration when the end of the range is reached.
         """
         if self.current_date > self.end_date:

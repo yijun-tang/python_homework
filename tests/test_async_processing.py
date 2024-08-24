@@ -8,6 +8,7 @@ from src.load import load_and_clean_data
 
 TEST_DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
 class TestAsyncProcessing(ut.IsolatedAsyncioTestCase):
     async def test_producer_consumer(self):
         file_path = os.path.join(TEST_DATA_DIR, "data", "empty.csv")
@@ -16,15 +17,13 @@ class TestAsyncProcessing(ut.IsolatedAsyncioTestCase):
         channel = asyncio.Queue(10)
 
         await asyncio.gather(
-            simulate_sales_stream(channel, 5), 
-            process_sales_updates(channel, sa, 3)
+            simulate_sales_stream(channel, 5), process_sales_updates(channel, sa, 3)
         )
-        
+
         # print(sa.cleaned_df)
 
         self.assertEqual(len(sa.cleaned_df), 3)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ut.main()
-        

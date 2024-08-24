@@ -5,6 +5,7 @@ from src.load import load_and_clean_data
 
 TEST_DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
 class TestLoadAndCleanData(ut.TestCase):
     def test_empty(self):
         file_path = os.path.join(TEST_DATA_DIR, "data", "empty.csv")
@@ -15,30 +16,34 @@ class TestLoadAndCleanData(ut.TestCase):
 
     def test_missing_value(self):
         file_path = os.path.join(TEST_DATA_DIR, "data", "missing_value.csv")
-        expected_output = pd.DataFrame({
-            "date": ["2023-11-01", "2023-02-15"],
-            "product_id": ["P005", "P029"],
-            "quantity": [6, 4],
-            "price": [13.28, 56.37],
-            "customer_id": ["C991", "C378"]
-        }).reset_index(drop=True)
-        expected_output['date'] = pd.to_datetime(expected_output['date'])
+        expected_output = pd.DataFrame(
+            {
+                "date": ["2023-11-01", "2023-02-15"],
+                "product_id": ["P005", "P029"],
+                "quantity": [6, 4],
+                "price": [13.28, 56.37],
+                "customer_id": ["C991", "C378"],
+            }
+        ).reset_index(drop=True)
+        expected_output["date"] = pd.to_datetime(expected_output["date"])
 
         df = load_and_clean_data(file_path)
-        df = df.reset_index(drop=True).drop(columns='total_sale')
+        df = df.reset_index(drop=True).drop(columns="total_sale")
 
         pd.testing.assert_frame_equal(df, expected_output)
 
     def test_checking_types(self):
         file_path = os.path.join(TEST_DATA_DIR, "data", "checking_types.csv")
-        expected_types = pd.Series({
-            'date': 'datetime64[ns]', 
-            'product_id': 'object', 
-            'quantity': 'int64', 
-            'price': 'float64', 
-            'customer_id': 'object', 
-            'total_sale': 'float64'
-        })
+        expected_types = pd.Series(
+            {
+                "date": "datetime64[ns]",
+                "product_id": "object",
+                "quantity": "int64",
+                "price": "float64",
+                "customer_id": "object",
+                "total_sale": "float64",
+            }
+        )
 
         df = load_and_clean_data(file_path)
 
@@ -50,9 +55,9 @@ class TestLoadAndCleanData(ut.TestCase):
 
         df = load_and_clean_data(file_path)
 
-        for e1, e2 in zip(df['total_sale'].tolist(), expected_total_sale):
+        for e1, e2 in zip(df["total_sale"].tolist(), expected_total_sale):
             self.assertAlmostEqual(e1, e2, delta=1e-9)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ut.main()
