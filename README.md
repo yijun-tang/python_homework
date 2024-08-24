@@ -3,7 +3,7 @@ DexMate Python homework for interview
 
 ## Setup Env
 
-You should install python first if there is no python 3.x installation. See more details on Python Offcial site.
+You should install python first if there is no python 3.9 or higher installation. See more details on Python Offcial site.
 
 Switch to your virtual environment of python, or create a new one:
 ```sh
